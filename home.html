@@ -18,6 +18,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <nav>
         <div class="logo">
@@ -28,42 +29,42 @@
             <li><a href="#" class="nav-link" data-target=".first-section">Home</a></li>
             <li><a href="#" class="nav-link" data-target=".second-section">Datasets</a></li>
             <li><a href="#" class="nav-link" data-target=".third-section">ML Model</a></li>
-            <li><a href="#" class="nav-link" data-target=".home">Team</a></li>
+            <li><a href="#" class="nav-link" data-target=".team">Team</a></li>
         </ul>
     </nav>
 
     </head>
     <body>
-        <div class="top-right-circle"></div>
+        <div class="top-right-circle" data-aos="zoom-in-left"></div>
           
         <section class="first-section">
             <div class="left">
                 <h1>Do you really<br>Know your Food?</h1>
                 <button>Check here</button>
             </div>
-            <div class="right">
+            <div class="right" >
                 <img src="images/bowl.png" alt="Bowl" class="bowl-image">
             </div>
           
         </section>
-        <div class="low-curve">
+        <div class="low-curve" data-aos="fade-up">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 319"><path fill="#206920" fill-opacity="1" d="M0,0L80,48C160,96,320,192,480,218.7C640,245,800,203,960,202.7C1120,203,1280,245,1360,266.7L1440,288L1440,320L1360,320C1280,320,1120,320,960,320C800,320,640,320,480,320C320,320,160,320,80,320L0,320Z"></path></svg>
         </div>
     <section class="second-section">
          <h1>Datasets</h1>
     <div class="card-container">
-        <div class="card">            
+        <div class="card" data-aos="zoom-in-right">            
             <h2>Food 101</h2>
             <p>The Food-101 dataset is a challenging image dataset of 101 food categories, with 101,000 images in total: 
 Number of images: 101,000 images, with 750 training images and 250 test images for each category.</p>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in">
             <h2>Allergen100</h2>
             <p>The Allergen100 dataset contains the 100 most common food allergens along with their associated side effects.After categorizing the food, ingredients are identified using the recipe_w_search_terms dataset.
 Ingredients are then matched with potential allergens from the Allergen100 dataset.
 </p>
         </div>
-        <div class="card">
+        <div class="card" data-aos="zoom-in-left">
             <h2>recipe_w_search_terms</h2>
             <p>This dataset contains recipe metadata along with search queries that return the recipe and tags assigned by users to the recipe.The recipe_w_search_terms dataset has been pre-trained using the MobileNetV2 model.
 </p>
@@ -74,23 +75,66 @@ Ingredients are then matched with potential allergens from the Allergen100 datas
    <section class="third-section">
     <h1>ML Models</h1>
     <div class="plates-container">
-        <div class="plate">
+        <div class="plate" data-aos="fade-right">
             <img src="./images/plate.png" alt="Inception Plate">
             <p>Inception</p>
         </div>
         <p class="plus-sign">+</p>
-        <div class="plate">
+        <div class="plate" data-aos="fade-left">
             <img src="./images/plate.png" alt="ResNet50 Plate">
             <p>ResNet50</p>
         </div>
         <button class="equals-button">=</button>
-        <div class="stacked-plate">
+        <div class="stacked-plate" data-aos="zoom-out"
+     data-aos-duration="5000">
             <img src="./images/stackplate.png" alt="Stacked Plates">
             <p>Meta Model</p>
         </div>
     </div>
-</section>
 
+<div id="carousel-wrapper" data-aos="fade-up">
+  <div id="menu">
+      <div id="current-option">
+        <span id="current-option-text1" data-previous-text="" data-next-text=""></span>
+        <span id="current-option-text2" data-previous-text="" data-next-text=""></span>
+      </div>
+      <button id="previous-option"></button>
+      <button id="next-option"></button>
+  </div>
+  <div id="image"></div>
+</div>
+
+</section>
+<section class="team third-section">
+    <h1> Team</h1>
+    <div class="yellow-block">
+        
+        <div class="profile">
+            <img src="./images/photo1.png" alt="Sunandita R">
+            
+        </div>
+        <div class="profile">
+            <img src="./images/photo.png" alt="Yerragogu Rishitha">
+            
+        </div>
+        <div class="profile">
+            <img src="./images/image.png" alt="Vinay Varshigan">
+
+        </div>
+    </div>
+    <div class="profile-names">
+        <p>Sunandita R <br> Model Developer</p>
+        <p>Yerragogu Rishitha <br> Web Developer</p>
+        <p>Vinay Varshigan <br> Clown</p>
+    </div>
+
+</section>
         <script src="./script.js" async defer></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            <script>
+        AOS.init({
+            duration: 1000, 
+        });
+    </script>
     </body>
 </html>
