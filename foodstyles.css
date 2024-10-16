@@ -142,6 +142,7 @@ nav ul li a:hover {
 .details-section {
     flex: 1;
     margin-left: 50px;
+    z-index: 10;
 }
 
 .details-section h2 {
@@ -181,21 +182,18 @@ nav ul li a:hover {
     position: absolute;
     width: 60vw;
     height: 100vh;
-}
-.bottom-right-svg {
-    position: absolute;
-    width: 20vw;
-    height: 50vh;
-}
-
-.top-left-svg {
     top: 0;
     left: 0;
     transform: translate(-50%, -50%);
 }
-
 .bottom-right-svg {
-    bottom: 20px;
+    position: absolute;
+    width: 60vw;
+    height: 100vh;
+    top: 0;
     right: 0;
-    transform: translate(50%, 35%);
+    transform: translate(40%, 0%); 
+}
+svg{
+    z-index: -1;
 }
