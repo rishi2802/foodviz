@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodLens Food details</title>
+    <link rel="stylesheet" href="./foodstyles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <nav>
+        <div class="logo">
+            <img src="./images/logo1.png" alt="FoodViz Logo">
+            <h1>FoodLens</h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#" class="nav-link" data-target=".first-section">Home</a></li>
+            <li><a href="#" class="nav-link" data-target=".second-section">Datasets</a></li>
+            <li><a href="#" class="nav-link" data-target=".third-section">ML Model</a></li>
+            <li><a href="#" class="nav-link" data-target=".team">Team</a></li>
+        </ul>
+    </nav>
+</head>
+<body>
+    <div class="top-left-svg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FA4D56" d="M55.2,-55.2C71.6,-38.9,84.8,-19.4,86.8,2C88.7,23.4,79.4,46.7,63.1,56.5C46.7,66.2,23.4,62.3,5.1,57.2C-13.2,52.1,-26.4,45.8,-42.6,36.1C-58.8,26.4,-78.1,13.2,-82.2,-4.1C-86.3,-21.4,-75.3,-42.8,-59.1,-59.2C-42.8,-75.6,-21.4,-86.9,-1,-85.9C19.4,-84.9,38.9,-71.6,55.2,-55.2Z" transform="translate(100 100)" />
+        </svg>
+    </div>
+    <div class="container">
+        <!-- Left side for Image upload -->
+        <div class="image-upload-section">
+            <div class="circular-div">
+                <!-- Placeholder for Image -->
+                <img src="placeholder.png" alt="Upload Food Image" id="foodImage">
+            </div>
+            <button class="upload-btn" onclick="document.getElementById('fileInput').click();">
+                <i class="fas fa-upload"></i> Upload Image
+            </button>
+            <input type="file" id="fileInput" style="display: none;" onchange="uploadImage(event)">
+        </div>
+
+        <!-- Right side for Food Details -->
+        <div class="details-section">
+            <h2>Food Details</h2>
+            <p><strong>Food Name:</strong> <span id="foodName">Example Food</span></p>
+
+            <!-- Nutritional Information Table -->
+            <h3>Nutritional Facts</h3>
+            <table class="nutrition-table">
+                <thead>
+                    <tr>
+                        <th>Nutrient</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody id="nutritionData">
+                    <!-- Dynamic Content will be inserted here -->
+                </tbody>
+            </table>
+
+            <!-- Allergen Information Table -->
+            <h3>Potential Allergens and Side Effects</h3>
+            <table class="allergens-table">
+                <thead>
+                    <tr>
+                        <th>Allergen</th>
+                        <th>Side Effects</th>
+                    </tr>
+                </thead>
+                <tbody id="allergenData">
+                    <!-- Dynamic Content will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- SVG positioned at bottom-right -->
+    <div class="bottom-right-svg">
+        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#FA4D56" d="M55.2,-55.2C71.6,-38.9,84.8,-19.4,86.8,2C88.7,23.4,79.4,46.7,63.1,56.5C46.7,66.2,23.4,62.3,5.1,57.2C-13.2,52.1,-26.4,45.8,-42.6,36.1C-58.8,26.4,-78.1,13.2,-82.2,-4.1C-86.3,-21.4,-75.3,-42.8,-59.1,-59.2C-42.8,-75.6,-21.4,-86.9,-1,-85.9C19.4,-84.9,38.9,-71.6,55.2,-55.2Z" transform="translate(100 100)" />
+        </svg>
+
+    <script>
+        function uploadImage(event) {
+            const image = document.getElementById('foodImage');
+            image.src = URL.createObjectURL(event.target.files[0]);
+
+            // Simulate backend data fetching for the food details, nutritional facts, and allergens
+            setTimeout(() => {
+                // Simulated food name
+                document.getElementById('foodName').innerText = 'Grilled Chicken Salad';
+
+                // Simulated nutritional data
+                const nutritionData = [
+                    { nutrient: 'Protein', value: '25g' },
+                    { nutrient: 'Total Fat', value: '15g' },
+                    { nutrient: 'Calories', value: '300kcal' },
+                    { nutrient: 'Carbohydrates', value: '10g' },
+                ];
+
+                const nutritionTableBody = document.getElementById('nutritionData');
+                nutritionTableBody.innerHTML = ''; // Clear previous data
+                nutritionData.forEach(item => {
+                    const row = `<tr><td>${item.nutrient}</td><td>${item.value}</td></tr>`;
+                    nutritionTableBody.innerHTML += row;
+                });
+
+                // Simulated allergen data
+                const allergenData = [
+                    { allergen: 'Peanuts', sideEffects: 'Anaphylaxis, hives, swelling' },
+                    { allergen: 'Soy', sideEffects: 'Respiratory issues, skin irritation' }
+                ];
+
+                const allergenTableBody = document.getElementById('allergenData');
+                allergenTableBody.innerHTML = ''; // Clear previous data
+                allergenData.forEach(item => {
+                    const row = `<tr><td>${item.allergen}</td><td>${item.sideEffects}</td></tr>`;
+                    allergenTableBody.innerHTML += row;
+                });
+            }, 1000); // Simulate 1 second delay for fetching data
+        }
+    </script>
+</body>
+</html>

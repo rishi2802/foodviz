@@ -1,0 +1,201 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Space Grotesk", sans-serif;
+    background-color:#f39c12;
+    position: relative;
+    overflow-x: hidden;
+}
+nav {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: transparent;
+    z-index: 1000;
+}
+
+nav .logo {
+    display: flex;
+    align-items: center;
+}
+
+nav .logo img {
+    width: 80px;
+    height: auto;
+    margin-right: 10px;
+}
+
+nav .logo h1 {
+    font-size: 1.5rem;
+    color: #007500;
+    /* font-family: "Cute Font", sans-serif; */
+    font-weight: 800;
+    /* text-shadow:
+        0.5px 0.5px 0px black,
+        -0.5px 0.5px 0px black,
+        0.5px -0.5px 0px black,
+        -0.5px -0.5px 0px black,
+        0.5px 0px 0px black,
+        -0.5px 0px 0px black,
+        0px 0.5px 0px black,
+        0px -0.5px 0px black; */
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+nav ul li a {
+    color: #007500;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    text-shadow:
+        0.5px 0.5px 0px black,
+        -0.5px 0.5px 0px black,
+        0.5px -0.5px 0px black,
+        -0.5px -0.5px 0px black,
+        0.5px 0px 0px black,
+        -0.5px 0px 0px black,
+        0px 0.5px 0px black,
+        0px -0.5px 0px black;
+}
+
+nav ul li a:hover {
+    color: #f39c12;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100vh;
+    padding: 0 50px;
+    position: relative;
+}
+
+.image-upload-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.circular-div {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background-color: white;
+    border: 5px solid #FFD700;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.circular-div img {
+    max-width: 100%;
+    border-radius: 50%;
+}
+
+.upload-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+.upload-btn i {
+    margin-right: 10px;
+}
+
+.details-section {
+    flex: 1;
+    margin-left: 50px;
+}
+
+.details-section h2 {
+    color: #333;
+    font-size: 24px;
+}
+
+.details-section p {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.nutrition-table,
+.allergens-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    font-size: 16px;
+}
+
+.nutrition-table th,
+.nutrition-table td,
+.allergens-table th,
+.allergens-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.nutrition-table th,
+.allergens-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    text-align: left;
+}
+/* SVG positioning */
+.top-left-svg{
+    position: absolute;
+    width: 60vw;
+    height: 100vh;
+}
+.bottom-right-svg {
+    position: absolute;
+    width: 20vw;
+    height: 50vh;
+}
+
+.top-left-svg {
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+}
+
+.bottom-right-svg {
+    bottom: 20px;
+    right: 0;
+    transform: translate(50%, 35%);
+}
