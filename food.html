@@ -1,132 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodLens Food details</title>
     <link rel="stylesheet" href="./foodstyles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+
+<body>
     <nav>
         <div class="logo">
             <img src="./images/logo1.png" alt="FoodViz Logo">
             <h1>FoodLens</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="#" class="nav-link" data-target=".first-section">Home</a></li>
-            <li><a href="#" class="nav-link" data-target=".second-section">Datasets</a></li>
-            <li><a href="#" class="nav-link" data-target=".third-section">ML Model</a></li>
-            <li><a href="#" class="nav-link" data-target=".team">Team</a></li>
+            <li><a href="home.html#home" class="nav-link" data-target=".first-section">Home</a></li>
+            <li><a href="home.html#dataset" class="nav-link" data-target=".second-section">Datasets</a></li>
+            <li><a href="home.html#mlmodel" class="nav-link" data-target=".third-section">ML Model</a></li>
+            <li><a href="home.html#team" class="nav-link" data-target=".team">Team</a></li>
         </ul>
     </nav>
-</head>
-<body>
-    <div class="top-left-svg">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#FA4D56" d="M27.4,-28.7C38.3,-23.6,51.8,-17.5,54.1,-8.9C56.3,-0.3,47.3,10.9,41,25.4C34.7,39.9,31.1,57.7,19.9,67.2C8.7,76.6,-10,77.8,-24.3,70.9C-38.6,63.9,-48.4,48.8,-59.3,32.8C-70.2,16.9,-82.2,0.1,-79.1,-13.4C-76,-26.8,-57.8,-37.1,-42.1,-41.4C-26.4,-45.7,-13.2,-44,-2.5,-41.1C8.3,-38.1,16.6,-33.9,27.4,-28.7Z" transform="translate(100 100)" />
-</svg>
-    </div>
+
+    
+    
     <div class="container">
+        <h2>Food Details</h2>
+    <p><strong><span id="foodName"></span></strong> </p>
         <!-- Left side for Image upload -->
         <div class="image-upload-section">
             <div class="circular-div">
                 <!-- Placeholder for Image -->
-                <img src="placeholder.png" alt="Upload Food Image" id="foodImage">
+                <img src="./images/placeholder.png" alt="Upload Food Image" id="foodImage">
             </div>
-            <button class="upload-btn" onclick="document.getElementById('fileInput').click();">
-                <i class="fas fa-upload"></i> Upload Image
-            </button>
+            <button onclick="document.getElementById('fileInput').click();">Upload Image</button>
             <input type="file" id="fileInput" style="display: none;" onchange="uploadImage(event)">
         </div>
 
         <!-- Right side for Food Details -->
-<div class="details-section">
-    <h2>Food Details</h2>
-    <p><strong>Food Name:</strong> <span id="foodName">Example Food</span></p>
+        <div class="details-section">
+            <!-- Nutritional Information Table -->
+            <h3>Nutritional Facts</h3>
+            <div class="table-container">
+                <table class="nutrition-table">
+                    <thead>
+                        <tr>
+                            <th>Nutrient</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nutritionData">
+                        <!-- Dynamic Content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
 
-    <!-- Nutritional Information Table -->
-    <h3>Nutritional Facts</h3>
-    <div class="table-container">
-        <table class="nutrition-table">
-            <thead>
-                <tr>
-                    <th>Nutrient</th>
-                    <th>Value</th>
-                </tr>
-            </thead>
-            <tbody id="nutritionData">
-                <!-- Dynamic Content will be inserted here -->
-            </tbody>
-        </table>
+            <!-- Allergen Information Table -->
+            <h3>Potential Allergens and Side Effects</h3>
+            <div class="table-container">
+                <table class="allergens-table">
+                    <thead>
+                        <tr>
+                            <th>Allergen</th>
+                            <th>Side Effects</th>
+                        </tr>
+                    </thead>
+                    <tbody id="allergenData">
+                        <!-- Dynamic Content will be inserted here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
-
-    <!-- Allergen Information Table -->
-    <h3>Potential Allergens and Side Effects</h3>
-    <div class="table-container">
-        <table class="allergens-table">
-            <thead>
-                <tr>
-                    <th>Allergen</th>
-                    <th>Side Effects</th>
-                </tr>
-            </thead>
-            <tbody id="allergenData">
-                <!-- Dynamic Content will be inserted here -->
-            </tbody>
-        </table>
-    </div>
-</div>
-
-
-    </div>
-    <!-- SVG positioned at bottom-right -->
-    <div class="bottom-right-svg">
-        <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-  <path fill="#FA4D56" d="M40,-48.7C55,-44,72.8,-36.7,81.9,-23.2C91.1,-9.6,91.6,10.2,81.4,21.8C71.3,33.5,50.4,37.1,35,44.1C19.7,51.2,9.8,61.7,-3.6,66.7C-17,71.6,-34,70.9,-49.6,63.9C-65.2,57,-79.5,43.7,-79.1,29.4C-78.8,15,-63.8,-0.4,-56.5,-16.9C-49.2,-33.4,-49.4,-50.9,-41.3,-57.8C-33.1,-64.7,-16.6,-60.9,-2.1,-58.1C12.4,-55.2,24.9,-53.3,40,-48.7Z" transform="translate(100 100)" />
-</svg>
 
     <script>
         function uploadImage(event) {
             const image = document.getElementById('foodImage');
             image.src = URL.createObjectURL(event.target.files[0]);
 
-            // Simulate backend data fetching for the food details, nutritional facts, and allergens
             setTimeout(() => {
-                // Simulated food name
                 document.getElementById('foodName').innerText = 'Grilled Chicken Salad';
 
-                // Simulated nutritional data
                 const nutritionData = [
-    { nutrient: 'Protein', value: '3.4869g' },
-    { nutrient: 'Total Fat', value: '17.2414g' },
-    { nutrient: 'Total Carbohydrates', value: '23.9056g' },
-    { nutrient: 'Calories', value: '261.4983kcal' },
-    { nutrient: 'Sugars', value: '1.5911g' },
-    { nutrient: 'Fiber', value: '2.0846g' },
-    { nutrient: 'Calcium', value: '16.7377mg' },
-    { nutrient: 'Iron', value: '0.7234mg' },
-    { nutrient: 'Magnesium', value: '17.0777mg' },
-    { nutrient: 'Phosphorus', value: '52.0771mg' },
-    { nutrient: 'Potassium', value: '189.0885mg' },
-    { nutrient: 'Sodium', value: '423.2966mg' },
-    { nutrient: 'Vitamin A', value: '133.6676µg' },
-    { nutrient: 'Vitamin E', value: '0.9749mg' },
-    { nutrient: 'Vitamin D', value: '0.1917µg' },
-    { nutrient: 'Vitamin C', value: '9.9027mg' },
-    { nutrient: 'Vitamin B1 (Thiamin)', value: '0.0981mg' },
-    { nutrient: 'Vitamin B2 (Riboflavin)', value: '0.0375mg' },
-    { nutrient: 'Vitamin B3 (Niacin)', value: '0.9344mg' },
-    { nutrient: 'Vitamin B6', value: '0.1391mg' },
-    { nutrient: 'Folate', value: '18.5009µg' },
-    { nutrient: 'Vitamin B12', value: '0.0217µg' },
-    { nutrient: 'Vitamin K', value: '18.9010µg' }
-];
-
+                    { nutrient: 'Protein', value: '3.4869g' },
+                    { nutrient: 'Total Fat', value: '17.2414g' },
+                    { nutrient: 'Total Carbohydrates', value: '23.9056g' },
+                    { nutrient: 'Calories', value: '261.4983kcal' },
+                    { nutrient: 'Sugars', value: '1.5911g' },
+                    { nutrient: 'Fiber', value: '2.0846g' },
+                    { nutrient: 'Calcium', value: '16.7377mg' },
+                    { nutrient: 'Iron', value: '0.7234mg' },
+                    { nutrient: 'Magnesium', value: '17.0777mg' },
+                    { nutrient: 'Phosphorus', value: '52.0771mg' },
+                    { nutrient: 'Potassium', value: '189.0885mg' },
+                    { nutrient: 'Sodium', value: '423.2966mg' },
+                    { nutrient: 'Vitamin A', value: '133.6676µg' },
+                    { nutrient: 'Vitamin E', value: '0.9749mg' },
+                    { nutrient: 'Vitamin D', value: '0.1917µg' },
+                    { nutrient: 'Vitamin C', value: '9.9027mg' },
+                    { nutrient: 'Vitamin B1 (Thiamin)', value: '0.0981mg' },
+                    { nutrient: 'Vitamin B2 (Riboflavin)', value: '0.0375mg' },
+                    { nutrient: 'Vitamin B3 (Niacin)', value: '0.9344mg' },
+                    { nutrient: 'Vitamin B6', value: '0.1391mg' },
+                    { nutrient: 'Folate', value: '18.5009µg' },
+                    { nutrient: 'Vitamin B12', value: '0.0217µg' },
+                    { nutrient: 'Vitamin K', value: '18.9010µg' }
+                ];
 
                 const nutritionTableBody = document.getElementById('nutritionData');
                 nutritionTableBody.innerHTML = ''; // Clear previous data
@@ -135,7 +121,6 @@
                     nutritionTableBody.innerHTML += row;
                 });
 
-                // Simulated allergen data
                 const allergenData = [
                     { allergen: 'Peanuts', sideEffects: 'Anaphylaxis, hives, swelling' },
                     { allergen: 'Soy', sideEffects: 'Respiratory issues, skin irritation' }
@@ -147,8 +132,9 @@
                     const row = `<tr><td>${item.allergen}</td><td>${item.sideEffects}</td></tr>`;
                     allergenTableBody.innerHTML += row;
                 });
-            }, 1000); // Simulate 1 second delay for fetching data
+            }, 1000);
         }
     </script>
 </body>
+
 </html>

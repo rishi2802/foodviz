@@ -24,9 +24,9 @@ const text2_options = [
 ];
 const color_options = ["#2258A5", "#1668BD", "#FF8B00"];
 const image_options = [
-  "https://images.unsplash.com/photo-1524721696987-b9527df9e512?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1190&q=80",
-  "https://images.unsplash.com/photo-1556656793-08538906a9f8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80",
-  "https://images.unsplash.com/photo-1506073828772-2f85239b6d2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1189&q=80",
+  "https://firebasestorage.googleapis.com/v0/b/c2cweb-72239.appspot.com/o/miniproject%2Finceptionv3.png?alt=media&token=65b99f10-5605-42ee-b78e-dd8f8fbd826e",
+  "https://firebasestorage.googleapis.com/v0/b/c2cweb-72239.appspot.com/o/miniproject%2FResNet50.png?alt=media&token=a9c53f12-da5a-4ab8-a964-108e2998c12a",
+  "https://firebasestorage.googleapis.com/v0/b/c2cweb-72239.appspot.com/o/miniproject%2Fstack.png?alt=media&token=bb5aa333-724e-459b-959c-71d21e0994e3",
 ];
 var i = 0;
 const currentOptionText1 = document.getElementById("current-option-text1");

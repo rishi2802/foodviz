@@ -54,9 +54,9 @@ nav .logo img {
 nav .logo h1 {
     font-size: 1.5rem;
     color: #007500;
-    /* font-family: "Cute Font", sans-serif; */
+
     font-weight: 800;
-    /* text-shadow:
+    text-shadow:
         0.5px 0.5px 0px black,
         -0.5px 0.5px 0px black,
         0.5px -0.5px 0px black,
@@ -64,7 +64,7 @@ nav .logo h1 {
         0.5px 0px 0px black,
         -0.5px 0px 0px black,
         0px 0.5px 0px black,
-        0px -0.5px 0px black; */
+        0px -0.5px 0px black;
 }
 
 
