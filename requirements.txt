@@ -1,0 +1,6 @@
+numpy
+pillow
+flask
+tensorflow
+requests
+pandas
