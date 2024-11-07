@@ -9,8 +9,8 @@ body {
     padding: 0;
     font-family: "Space Grotesk", sans-serif;
     background-color: #f39c12;
-    background-image: url('./images/layered-waves-haikei.svg');
-    /* background-attachment: fixed; */
+    background-image: url('../images/layered-waves-haikei.svg');
+    background-attachment: fixed;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;

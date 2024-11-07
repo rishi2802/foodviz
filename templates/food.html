@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodLens Food details</title>
-    <link rel="stylesheet" href="./foodstyles.css">
+    <!-- <link rel="stylesheet" href="./foodstyles.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/foodstyles.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cute+Font&display=swap" rel="stylesheet">
@@ -18,14 +19,14 @@
 <body>
     <nav>
         <div class="logo">
-            <img src="./images/logo1.png" alt="FoodViz Logo">
+            <img src="{{ url_for('static', filename='images/logo1.png') }}" alt="FoodViz Logo">
             <h1>FoodLens</h1>
         </div>
         <ul class="nav-links">
-            <li><a href="home.html#home" class="nav-link" data-target=".first-section">Home</a></li>
-            <li><a href="home.html#dataset" class="nav-link" data-target=".second-section">Datasets</a></li>
-            <li><a href="home.html#mlmodel" class="nav-link" data-target=".third-section">ML Model</a></li>
-            <li><a href="home.html#team" class="nav-link" data-target=".team">Team</a></li>
+            <li><a href="{{ url_for('home') }}#home" class="nav-link" data-target=".first-section">Home</a></li>
+            <li><a href="{{ url_for('home') }}#dataset" class="nav-link" data-target=".second-section">Datasets</a></li>
+            <li><a href="{{ url_for('home') }}#mlmodel" class="nav-link" data-target=".third-section">ML Model</a></li>
+            <li><a href="{{ url_for('home') }}#team" class="nav-link" data-target=".team">Team</a></li>
         </ul>
     </nav>
 
@@ -38,7 +39,7 @@
         <div class="image-upload-section">
             <div class="circular-div">
                 <!-- Placeholder for Image -->
-                <img src="./images/placeholder.png" alt="Upload Food Image" id="foodImage">
+                <img src="{{ url_for('static', filename='images/placeholder.png') }}" alt="Upload Food Image" id="foodImage">
             </div>
             <button onclick="document.getElementById('fileInput').click();">Upload Image</button>
             <input type="file" id="fileInput" style="display: none;" onchange="uploadImage(event)">
@@ -80,7 +81,8 @@
         </div>
     </div>
 
-    <script src="./foodscript.js" async defer></script>
+    <!-- <script src="./foodscript.js" async defer></script> -->
+    <script src="{{ url_for('static', filename='js/foodscript.js') }}"></script>
 
 </body>
 
