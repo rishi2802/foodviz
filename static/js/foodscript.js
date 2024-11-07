@@ -1,53 +1,47 @@
-function uploadImage(event) {
-            const image = document.getElementById('foodImage');
-            image.src = URL.createObjectURL(event.target.files[0]);
+async function uploadImage(event) {
+    const fileInput = event.target.files[0];
+    const formData = new FormData();
+    formData.append("file", fileInput);
 
-            setTimeout(() => {
-                document.getElementById('foodName').innerText = 'Grilled Chicken Salad';
+    try {
+        const response = await fetch("/predict", {
+            method: "POST",
+            body: formData
+        });
 
-                const nutritionData = [
-                    { nutrient: 'Protein', value: '3.4869g' },
-                    { nutrient: 'Total Fat', value: '17.2414g' },
-                    { nutrient: 'Total Carbohydrates', value: '23.9056g' },
-                    { nutrient: 'Calories', value: '261.4983kcal' },
-                    { nutrient: 'Sugars', value: '1.5911g' },
-                    { nutrient: 'Fiber', value: '2.0846g' },
-                    { nutrient: 'Calcium', value: '16.7377mg' },
-                    { nutrient: 'Iron', value: '0.7234mg' },
-                    { nutrient: 'Magnesium', value: '17.0777mg' },
-                    { nutrient: 'Phosphorus', value: '52.0771mg' },
-                    { nutrient: 'Potassium', value: '189.0885mg' },
-                    { nutrient: 'Sodium', value: '423.2966mg' },
-                    { nutrient: 'Vitamin A', value: '133.6676µg' },
-                    { nutrient: 'Vitamin E', value: '0.9749mg' },
-                    { nutrient: 'Vitamin D', value: '0.1917µg' },
-                    { nutrient: 'Vitamin C', value: '9.9027mg' },
-                    { nutrient: 'Vitamin B1 (Thiamin)', value: '0.0981mg' },
-                    { nutrient: 'Vitamin B2 (Riboflavin)', value: '0.0375mg' },
-                    { nutrient: 'Vitamin B3 (Niacin)', value: '0.9344mg' },
-                    { nutrient: 'Vitamin B6', value: '0.1391mg' },
-                    { nutrient: 'Folate', value: '18.5009µg' },
-                    { nutrient: 'Vitamin B12', value: '0.0217µg' },
-                    { nutrient: 'Vitamin K', value: '18.9010µg' }
-                ];
+        if (response.ok) {
+            const result = await response.json();
+            console.log("Prediction result:", result); // Debugging line
 
-                const nutritionTableBody = document.getElementById('nutritionData');
-                nutritionTableBody.innerHTML = ''; // Clear previous data
-                nutritionData.forEach(item => {
-                    const row = `<tr><td>${item.nutrient}</td><td>${item.value}</td></tr>`;
-                    nutritionTableBody.innerHTML += row;
-                });
+            // Update the UI with only the foodName
+            document.getElementById("foodName").innerText = result.foodName;
 
-                const allergenData = [
-                    { allergen: 'Peanuts', sideEffects: 'Anaphylaxis, hives, swelling' },
-                    { allergen: 'Soy', sideEffects: 'Respiratory issues, skin irritation' }
-                ];
+            // Update the nutritional information (only nutrient and value)
+            const nutritionTableBody = document.getElementById("nutritionData");
+            nutritionTableBody.innerHTML = ''; // Clear previous data
+            result.nutritionData.forEach(item => {
+                const row = `<tr><td>${item.nutrient}</td><td>${item.value}</td></tr>`;
+                nutritionTableBody.innerHTML += row;
+            });
 
-                const allergenTableBody = document.getElementById('allergenData');
-                allergenTableBody.innerHTML = ''; // Clear previous data
-                allergenData.forEach(item => {
-                    const row = `<tr><td>${item.allergen}</td><td>${item.sideEffects}</td></tr>`;
-                    allergenTableBody.innerHTML += row;
-                });
-            }, 1000);
+            // Update allergen information (if needed)
+            const allergenTableBody = document.getElementById("allergenData");
+            allergenTableBody.innerHTML = ''; // Clear previous data
+            result.allergenData.forEach(item => {
+                const row = `<tr><td>${item.allergen}</td><td>${item.sideEffects}</td></tr>`;
+                allergenTableBody.innerHTML += row;
+            });
+        } else {
+            const errorData = await response.json();
+            console.error("Prediction failed:", errorData.error);
+            alert("Error: " + errorData.error);
         }
+    } catch (error) {
+        console.error("Error during image upload:", error);
+        alert("Error uploading image, please try again.");
+    }
+
+    // Update the displayed image
+    const image = document.getElementById("foodImage");
+    image.src = URL.createObjectURL(fileInput);
+}
