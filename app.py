@@ -13,6 +13,34 @@ CLIENT = InferenceHTTPClient(
     api_key="MLFbasW47mptS1MgzQZp"
 )
 
+# Nutrient IDs to names mapping
+important_nutrients = {
+    208: 'Calories',
+    203: 'Protein',
+    204: 'Total Fat',
+    205: 'Total Carbohydrates',
+    269: 'Sugars',
+    307: 'Sodium',
+    291: 'Fiber',
+    301: 'Calcium',
+    303: 'Iron',
+    304: 'Magnesium',
+    305: 'Phosphorus',
+    306: 'Potassium',
+    401: 'Vitamin C',
+    404: 'Vitamin B1 (Thiamin)',
+    405: 'Vitamin B2 (Riboflavin)',
+    406: 'Vitamin B3 (Niacin)',
+    415: 'Vitamin B6',
+    417: 'Folate',
+    418: 'Vitamin B12',
+    320: 'Vitamin A',
+    323: 'Vitamin E',
+    328: 'Vitamin D',
+    430: 'Vitamin K'
+}
+
+# Fetch nutritional data from Nutritionix API
 def fetch_nutritional_data(food_item):
     api_key = 'f1d9ff764f44e2017e86da4174c34618'  # Replace with your actual API key
     app_id = '69a71a86'  # Replace with your actual App ID
@@ -63,7 +91,7 @@ def predict():
             os.makedirs('static/uploads')
 
         image.save(image_path)
-        
+
         # Send the image to Roboflow and get predictions
         result = CLIENT.infer(image_path, model_id="food-detection-yldun/1")
 
@@ -81,19 +109,24 @@ def predict():
         # For simplicity, using the first detected food name
         predicted_food = food_names[0] if food_names else "Unknown food"
 
-        # Constructing the response data with dummy nutritional and allergen data
+        # Fetch nutritional data from Nutritionix API based on the detected food
+        nutrition_data = fetch_nutritional_data(predicted_food)
+
+        # Extract the relevant nutrients (nutrient names and values) from Nutritionix response
+        nutrition_info = []
+        for nutrient in nutrition_data['foods'][0]['full_nutrients']:
+            # Map the attr_id to the nutrient name using important_nutrients dictionary
+            nutrient_name = important_nutrients.get(nutrient.get('attr_id'))
+            if nutrient_name:
+                nutrition_info.append({
+                    'nutrient': nutrient_name,
+                    'value': nutrient.get('value')
+                })
+
+        # Constructing the response data with the food name and nutritional info
         response_data = {
             "foodName": predicted_food,
-            "nutritionData": [
-                {"nutrient": "Protein", "value": "3.5g"},
-                {"nutrient": "Total Fat", "value": "17.2g"},
-                {"nutrient": "Total Carbohydrates", "value": "24.0g"},
-                {"nutrient": "Calories", "value": "261.5 kcal"}
-            ],
-            "allergenData": [
-                {"allergen": "Peanuts", "sideEffects": "Anaphylaxis, hives, swelling"},
-                {"allergen": "Soy", "sideEffects": "Respiratory issues, skin irritation"}
-            ]
+            "nutritionData": nutrition_info
         }
 
         return jsonify(response_data)
