@@ -2,6 +2,9 @@ async function uploadImage(event) {
     const fileInput = event.target.files[0];
     const formData = new FormData();
     formData.append("file", fileInput);
+      // Update the displayed image
+    const image = document.getElementById("foodImage");
+    image.src = URL.createObjectURL(fileInput);
 
     try {
         const response = await fetch("/predict", {
@@ -24,24 +27,24 @@ async function uploadImage(event) {
                 nutritionTableBody.innerHTML += row;
             });
 
-            // Update allergen information (if needed)
-            const allergenTableBody = document.getElementById("allergenData");
-            allergenTableBody.innerHTML = ''; // Clear previous data
-            result.allergenData.forEach(item => {
-                const row = `<tr><td>${item.allergen}</td><td>${item.sideEffects}</td></tr>`;
+            // Check if allergenData is an object with allergens and sideEffects
+            if (result.allergenData && result.allergenData.allergens && result.allergenData.sideEffects) {
+                const allergenTableBody = document.getElementById("allergenData");
+                allergenTableBody.innerHTML = ''; // Clear previous data
+                
+                // Display allergens as a comma-separated string and side effects in another column
+                const row = `<tr><td>${result.allergenData.allergens.join(', ')}</td><td>${result.allergenData.sideEffects}</td></tr>`;
                 allergenTableBody.innerHTML += row;
-            });
+            } else {
+                console.error("Allergen data is missing or malformed.");
+            }
         } else {
             const errorData = await response.json();
             console.error("Prediction failed:", errorData.error);
-            alert("Error: " + errorData.error);
         }
     } catch (error) {
         console.error("Error during image upload:", error);
-        alert("Error uploading image, please try again.");
     }
 
-    // Update the displayed image
-    const image = document.getElementById("foodImage");
-    image.src = URL.createObjectURL(fileInput);
+  
 }

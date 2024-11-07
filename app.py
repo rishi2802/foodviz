@@ -13,6 +13,8 @@ CLIENT = InferenceHTTPClient(
     api_key="MLFbasW47mptS1MgzQZp"
 )
 
+
+
 # Nutrient IDs to names mapping
 important_nutrients = {
     208: 'Calories',
@@ -39,6 +41,46 @@ important_nutrients = {
     328: 'Vitamin D',
     430: 'Vitamin K'
 }
+
+
+# Predefined allergens and side effects for food items
+food_allergens_and_effects = {
+    "pancakes": {
+        "allergens": ["Wheat", "Milk", "Eggs"],
+        "sideEffects": "Anaphylaxis, hives, itching, swelling, gastrointestinal issues"
+    },
+    "club sandwich": {
+        "allergens": ["Wheat", "Eggs", "Milk", "Soy", "Mustard"],
+        "sideEffects": "Anaphylaxis, hives, itching, swelling, respiratory issues, gastrointestinal issues"
+    },
+    "samosa": {
+        "allergens": ["Wheat", "Soy", "Milk", "Sesame"],
+        "sideEffects": "Anaphylaxis, hives, itching, swelling, gastrointestinal issues"
+    },
+    "french fries": {
+        "allergens": ["Wheat", "Soy"],  
+        "sideEffects": "Hives, itching, swelling, gastrointestinal upset"
+    },
+    "macaroni and cheese": {
+        "allergens": ["Wheat", "Milk", "Eggs"],
+        "sideEffects": "Anaphylaxis, hives, itching, swelling, gastrointestinal issues"
+    },
+    "waffles": {
+        "allergens": ["Wheat", "Milk", "Eggs"],
+        "sideEffects": "Anaphylaxis, hives, itching, swelling, gastrointestinal issues"
+    }
+}
+
+
+def get_allergens_and_side_effects(food_item):
+    """Return allergens and side effects for the given food item."""
+    if food_item in food_allergens_and_effects:
+        return food_allergens_and_effects[food_item]
+    else:
+        return {
+            "allergens": ["Unknown"],
+            "sideEffects": "Unknown side effects"
+        }
 
 # Fetch nutritional data from Nutritionix API
 def fetch_nutritional_data(food_item):
@@ -111,6 +153,8 @@ def predict():
 
         # Fetch nutritional data from Nutritionix API based on the detected food
         nutrition_data = fetch_nutritional_data(predicted_food)
+        
+
 
         # Extract the relevant nutrients (nutrient names and values) from Nutritionix response
         nutrition_info = []
@@ -122,11 +166,14 @@ def predict():
                     'nutrient': nutrient_name,
                     'value': nutrient.get('value')
                 })
+        # Fetch allergens and side effects for the predicted food
+        allergen_data = get_allergens_and_side_effects(predicted_food)
 
         # Constructing the response data with the food name and nutritional info
         response_data = {
             "foodName": predicted_food,
-            "nutritionData": nutrition_info
+            "nutritionData": nutrition_info,
+            "allergenData": allergen_data
         }
 
         return jsonify(response_data)
